@@ -17,12 +17,21 @@ for iter = 1:num_iters
     %       of the cost function (computeCostMulti) and gradient here.
     %
 
+    # calculate the separate row error by iterate the dataset 
+    %{
     diff = zeros(1, size(X, 2));
     for i=1:m
         diff += (X(i, :)*theta - y(i))*X(i, :);
     endfor
     theta -= (diff*alpha/m)';
-
+    %}
+    
+    # calculate the errors based on matrix
+    h = X * theta;  % hypothesis   
+    errors = h - y;
+    delta = alpha / m * (X' * errors);
+    theta -= delta;
+    
     % ============================================================
 
     % Save the cost J in every iteration    

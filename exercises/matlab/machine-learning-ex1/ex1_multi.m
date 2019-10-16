@@ -99,10 +99,10 @@ ylabel('Cost J');
 
 #%{
 alphas = 0.000:0.005:0.04;
-alphas = alphas(2:size(alphas)(2));   % remove first value of 0.0
+alphas(1) = 0.002;   %  set first value to 0.002
 num_iters = 400;
 figure;
-colors = ['k', 'r', 'g', 'b', 'y', 'm', 'c', 'r']
+colors = ['k', 'r', 'g', 'b', 'y', 'm', 'c', 'k', 'r'];
 for i=1:length(alphas)
   alpha = alphas(i);
   theta = zeros(3, 1);
@@ -111,7 +111,7 @@ for i=1:length(alphas)
   hold on;
 endfor
 
-legend({'0.005', '0.01', '0.015', '0.02', '0.025', '0.03', '0.035', '0.04'})
+legend({'0.002', '0.005', '0.01', '0.015', '0.02', '0.025', '0.03', '0.035', '0.04'})
 xlabel('Number of iterations');
 ylabel('Cost J');
 #%}
