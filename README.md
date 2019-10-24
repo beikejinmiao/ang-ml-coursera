@@ -7,7 +7,7 @@ Stanford University - Coursera's Machine Learning
 
 ### 课程进度
 - [x] Programming Exercise 1: Linear Regression  
-- [ ] Programming Exercise 2: Logistic Regression  
+- [x] Programming Exercise 2: Logistic Regression  
 - [ ] Programming Exercise 3:
 Multi-class Classification and Neural Networks  
 - [ ] Programming Exercise 4:
