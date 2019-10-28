@@ -49,15 +49,25 @@ X = [ones(m, 1) X];
 %                 initial_theta, options);
 %
 
+%{
+all_theta = [];
+initial_theta = zeros(n + 1, 1);
+options = optimset('GradObj', 'on', 'MaxIter', 50);
+for c = 1:num_labels
+    [theta] = fmincg (@(t)(lrCostFunction(t, X, (y == c), lambda)), initial_theta, options);
+    all_theta = [all_theta theta];
+endfor
 
+all_theta = all_theta';
+%}
 
-
-
-
-
-
-
-
+# https://github.com/tuanavu/coursera-stanford/blob/master/machine_learning/exercises/matlab/machine-learning-ex3/ex3/oneVsAll.m
+options = optimset('GradObj', 'on', 'MaxIter', 50);
+for i=1:num_labels
+	initial_theta = zeros(size(X, 2), 1);
+	[theta] = fmincg(@(t)(lrCostFunction(t, X,y==i, lambda)), initial_theta, options);
+	all_theta(i,:) = theta';
+end
 
 
 % =========================================================================

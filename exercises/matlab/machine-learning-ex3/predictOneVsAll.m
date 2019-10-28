@@ -30,11 +30,25 @@ X = [ones(m, 1) X];
 %       for each row.
 %       
 
+%{
+prob = [];
+for i=1:num_labels
+  preds = X * all_theta(i, :)';
+  prob = [prob preds];
+endfor
 
+labels = [];
+for i=1:m
+  [x, ix] = max(prob(i, :));
+  labels = [labels ix];
+endfor
 
+p = labels';
+%}
 
-
-
+# https://github.com/tuanavu/coursera-stanford/blob/master/machine_learning/exercises/matlab/machine-learning-ex3/ex3/oneVsAll.m
+preds = X * all_theta';
+[temp, p] = max(preds, [], 2);
 
 % =========================================================================
 
