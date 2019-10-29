@@ -22,10 +22,11 @@ for i = 1:m
   J -= y(i)*log(s) + (1-y(i))*log(1-s);
 endfor
 
-
-J = J/m + (theta'*theta)*lambda/2/m;
-
-grad = [X' * (sigmoid(X * theta) - y) / m] + theta*lambda/m;
+# the first value in theta does not participate in regularization
+reg_theta = theta;
+reg_theta(1) = 0;
+J = J/m + (reg_theta'*reg_theta)*lambda/2/m;
+grad = [X' * (sigmoid(X * theta) - y) / m] + reg_theta*lambda/m;
 
 
 % =============================================================
