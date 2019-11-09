@@ -20,13 +20,14 @@ grad = zeros(size(theta));
 %
 
 
+preds = X * theta;
+errors = preds - y;
+J = 1/(2*m) * sum(errors.^2);
+reg = lambda/(2*m) * sum(theta(2:end,:).^2);
+J = J + reg;
 
-
-
-
-
-
-
+grad = (1/m) * (X' * errors);
+grad(2:end,:) += lambda/m*theta(2:end, :);
 
 
 
