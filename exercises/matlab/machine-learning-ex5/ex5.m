@@ -217,4 +217,35 @@ for i = 1:length(lambda_vec)
 end
 
 fprintf('Program paused. Press enter to continue.\n');
-# kbhit();
+kbhit();
+
+
+%% =========== Part 9: Learning Curve for Polynomial Regression With Test =============
+%  Next, you should implement the learningCurve function. 
+%
+%  Write Up Note: Since the model is underfitting the data, we expect to
+%                 see a graph with "high bias" -- Figure 3 in ex5.pdf 
+%
+
+lambda = 3.8599;
+[error_train, error_val, error_test] = ...
+    learningCurveWithTest(X_poly, y, ...
+                          X_poly_val, yval, ...
+                          X_poly_test, ytest, ...
+                          lambda);
+
+plot(1:m, error_train, 1:m, error_val, 1:m, error_test);
+title('Learning curve for linear regression')
+legend('Train', 'Cross Validation', 'Test')
+xlabel('Number of training examples')
+ylabel('Error with lambda=3.8599')
+axis([0 13 0 170])
+
+fprintf('Polynomial Regression (lambda = %f)\n\n', lambda);
+fprintf('# Training Examples\tTrain Error\tCross Validation Error\tTest Error\n');
+for i = 1:m
+    fprintf('  \t%d\t\t%f\t%f\t%f\n', i, error_train(i), error_val(i), error_test(i));
+end
+
+fprintf('Program paused. Press enter to continue.\n');
+#kbhit();
